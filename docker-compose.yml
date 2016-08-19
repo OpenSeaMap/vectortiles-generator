@@ -1,0 +1,33 @@
+postgres:
+  image: "mdillon/postgis:9.5"
+  ports:
+   - "5432:5432"
+  environment:
+    POSTGRES_DB: seamap
+    POSTGRES_USER: seamap
+    POSTGRES_PASSWORD: seamap
+import-osm:
+  build: src/import-osm
+  links:
+   - postgres:postgres
+  volumes:
+   - ./data:/import
+db-schema:
+  build: src/db-schema
+  links:
+   - postgres:postgres
+mapbox-studio:
+  image: "osm2vectortiles/mapbox-studio"
+  volumes:
+   - ./src/vector-datasource:/projects/vector-datasource.tm2source
+  links:
+   - postgres:postgres
+  ports:
+   - "3000:3000"
+export-vectortiles:
+  build: src/export-vectortiles
+  volumes:
+   - ./data:/export
+   - ./src/vector-datasource:/tm2source
+  links:
+   - postgres:postgres

@@ -1,0 +1,17 @@
+tables:
+  beacon_cardinal:
+    type: point
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - key: seamark:beacon_cardinal:colour
+      name: colour
+      type: string
+    mapping:
+      seamark:type:
+      - beacon_cardinal
