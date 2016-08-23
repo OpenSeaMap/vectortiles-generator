@@ -31,3 +31,10 @@ export-vectortiles:
    - ./src/vector-datasource:/tm2source
   links:
    - postgres:postgres
+serve:
+  image: klokantech/tileserver-gl
+  volumes:
+  - ./src/tileserver-gl:/data
+  - ./data:/tiles
+  ports:
+  - "8080:80"

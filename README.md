@@ -1,12 +1,18 @@
 # Open Sea Map Vector Tiles
 
-A skeleton to start open sea map vector tile development.
-This repos is meant to be transferred to the Open Sea Map organization.
+Infrastructure to generate vector tiles for [OpenSeaMap ](http://openseamap.org).
 
 ## Run Workflow
 
-The entire project is structured components using Docker containers
+The entire project is structured in components using Docker containers
 to work together. Ensure you meet the prerequisites.
+
+Please note that after changing the configuration files you need to rebuild the
+containers. See below for relevant configuration files.
+
+Example: `docker-compose build import-osm`
+
+### Setup
 
 - Install [Docker](https://docs.docker.com/engine/installation/)
 - Install [Docker Compose](https://docs.docker.com/compose/install/)
@@ -17,6 +23,14 @@ Start up the PostgreSQL database with the PostGIS extension.
 docker-compose up -d postgres
 ```
 
+Import the required database schema (views, prepared tables and helper functions).
+
+```bash
+docker-compose run db-schema
+```
+
+### OSM Import
+
 Now download a OSM PBF extract and store it in the `./data` dir.
 Import the OSM PBF.
 
@@ -24,11 +38,26 @@ Import the OSM PBF.
 docker-compose run import-osm
 ```
 
-Import the required database schema (views, prepared tables and helper functions).
+Note: The [mapping.yml](import-osm/mapping.yml) determines which tables will be
+filled with which nodes and tags.
+
+### Setup export options
+
+To visualize and work with the vector tiles you can spin up Mapbox Studio
+in a Docker container and visit [localhost:3000](http://localhost:3000).
+
+Then open the vector tile source with `Browse` and choose from `/projects/vector-datasource.tm2source`.
 
 ```bash
-docker-compose run db-schema
+docker-compose up mapbox-studio
 ```
+
+Edit the source settings by adding layers and using SQL queries to fetch data from
+the tables created by the `OSM Import` step.
+
+This will modify the [vector-datasource.tm2source](vector-datasource/vector-datasource.tm2source) file.
+
+### Export the vector tiles
 
 Export the vector tiles for the planet.
 
@@ -36,11 +65,15 @@ Export the vector tiles for the planet.
 docker-compose run export-vectortiles
 ```
 
-To visualize and work with the vector tiles you can spin up Mapbox Studio
-in a Docker container and visit `localhost:3000`.
+Note: The file [export-mbtiles.sh](export-vectortiles/export-mbtiles.sh) determines
+the options for the export. Change the `bbox` according to your data.
 
-Then open the vector tile source with `Browse` and choose from `/projects/vector-datasource.tm2source`.
+### Serve the vector tiles
+
+Use [klokantech/tileserver-gl](https://github.com/klokantech/tileserver-gl) to serve the tiles.
 
 ```bash
-docker-compose up mapbox-studio
+docker-compose up serve
 ```
+
+Visit [localhost:8080](http://localhost:8080).

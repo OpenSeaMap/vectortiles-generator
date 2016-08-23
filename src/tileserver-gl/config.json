@@ -1,0 +1,17 @@
+{
+  "options": {
+    "paths": {
+      "root": "",
+      "mbtiles": "/tiles"
+    },
+    "formatEncoding": {
+      "png": 6,
+      "jpeg": 80,
+      "webp": 90
+    }
+  },
+  "styles": {},
+  "data": {
+    "oseam":{"mbtiles": "oseam.mbtiles"}
+  }
+}
