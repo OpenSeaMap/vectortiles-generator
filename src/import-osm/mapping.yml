@@ -15,3 +15,18 @@ tables:
     mapping:
       seamark:type:
       - beacon_cardinal
+  seamarks:
+    type: point
+    mapping:
+      seamark:type: [__any__]
+    fields:
+      - name: osm_id
+        type: id
+      - name: geometry
+        type: geometry
+      - key: seamark:name
+        name: name
+        type: string
+      - key: seamark:type
+        name: type
+        type: string

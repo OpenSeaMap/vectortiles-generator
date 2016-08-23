@@ -9,6 +9,7 @@ export/
 *.mbtiles
 *.pbf
 *.gz
+data/
 
 # Temp edit files
 *.swp
