@@ -41,6 +41,8 @@ docker-compose run import-osm
 Note: The [mapping.yml](import-osm/mapping.yml) determines which tables will be
 filled with which nodes and tags.
 
+The mapping syntax is documented [here](https://imposm.org/docs/imposm3/latest/mapping.html).
+
 ### Setup export options
 
 To visualize and work with the vector tiles you can spin up Mapbox Studio
