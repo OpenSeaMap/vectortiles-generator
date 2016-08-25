@@ -1,0 +1,25 @@
+{
+  "name": "posgres export as geojson",
+  "version": "1.0.0",
+  "description": "exports data from a posgres table (with posgis) as geojson file",
+  "main": "index.js",
+  "scripts": {
+    "main": "node index.js",
+    "test": "standard"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "dbgeo": "^1.0.0",
+    "geojsonhint": "^2.0.0-beta",
+    "pg": "^6.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
+    "standard": "*"
+  }
+}

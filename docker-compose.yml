@@ -31,6 +31,14 @@ export-vectortiles:
    - ./src/vector-datasource:/tm2source
   links:
    - postgres:postgres
+
+export-geojson:
+  build: src/export-geojson
+  volumes:
+  - ./data:/data/export
+  links:
+  - postgres:postgres
+
 serve:
   image: klokantech/tileserver-gl
   volumes:

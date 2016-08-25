@@ -79,3 +79,18 @@ docker-compose up serve
 ```
 
 Visit [localhost:8080](http://localhost:8080).
+
+### Export the data as GeoJson
+
+Exports the data as GeoJson
+
+```bash
+docker-compose run export-geojson
+```
+
+Note: The file [export-geojson.sh](export-geojson/export-geojson.sh) determines
+the options for the export.
+
+The data can be upload in [Mapbox Studio](https://www.mapbox.com/studio) to allow
+creating of styles using their tools. See the [OSM2VectorTiles doc](http://osm2vectortiles.org/docs/create-map-with-mapbox-studio/)
+for details.
