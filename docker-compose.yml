@@ -40,7 +40,7 @@ export-geojson:
   - postgres:postgres
 
 serve:
-  image: klokantech/tileserver-gl
+  image: aaxee/tileserver-gl
   volumes:
   - ./src/tileserver-gl:/data
   - ./data:/tiles
