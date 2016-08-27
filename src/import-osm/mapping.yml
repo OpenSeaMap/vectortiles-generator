@@ -24,9 +24,38 @@ tables:
         type: id
       - name: geometry
         type: geometry
+      - name: type
+        type: mapping_value
       - key: seamark:name
         name: name
         type: string
-      - key: seamark:type
-        name: type
+  buoy_cardinal:
+    type: point
+    mapping:
+      seamark:type:
+        - buoy_cardinal
+    fields:
+      - name: osm_id
+        type: id
+      - name: geometry
+        type: geometry
+      - name: type
+        type: mapping_value
+      - key: seamark:name
+        name: name
+        type: string
+      - key: seamark:buoy_cardinal:category
+        name: category
+        type: string
+      - key: seamark:buoy_cardinal:colour
+        name: colour
+        type: string
+      - key: seamark:buoy_cardinal:colour_pattern
+        name: colour_pattern
+        type: string
+      - key: seamark:buoy_cardinal:reflectivity
+        name: reflectivity
+        type: string
+      - key: seamark:buoy_cardinal:shape
+        name: shape
         type: string
